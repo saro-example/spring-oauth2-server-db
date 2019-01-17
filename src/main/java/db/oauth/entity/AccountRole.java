@@ -37,7 +37,7 @@ public class AccountRole implements Serializable
 	@Data @AllArgsConstructor @NoArgsConstructor
     public static class Key implements Serializable {
         private static final long serialVersionUID = 1L;
-        long sn;
+        long no;
         String type;
     }
 }
