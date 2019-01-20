@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import db.oauth.entity.AccountRole.Key;
@@ -17,11 +16,10 @@ import lombok.NoArgsConstructor;
 /**
  * 회원 테이블
  */
-@Entity(name="users")
-@Table(name="users")
+@Entity(name="account_role")
+@Table(name="account_role")
 @IdClass(Key.class)
 @Data @AllArgsConstructor @NoArgsConstructor
-@SequenceGenerator(name = "users_no_seq", sequenceName = "users_no_seq", allocationSize = 1)
 public class AccountRole implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +36,6 @@ public class AccountRole implements Serializable
     public static class Key implements Serializable {
         private static final long serialVersionUID = 1L;
         long no;
-        String type;
+        String role;
     }
 }
