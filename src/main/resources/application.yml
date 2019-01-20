@@ -8,3 +8,5 @@ db.oauth:
   cachePrepStmts: true
   maximumPoolSize: 50
   minimumIdle: 1
+  
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
