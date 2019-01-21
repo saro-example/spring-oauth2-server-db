@@ -6,12 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Entity(name="account")
 @Table(name="account")
 @Data @AllArgsConstructor @NoArgsConstructor
+@NamedEntityGraph(name = "roles", attributeNodes = @NamedAttributeNode("roles"))
 @SequenceGenerator(name = "account_no_seq", sequenceName = "account_no_seq", allocationSize = 1)
 public class Account implements Serializable
 {
@@ -47,7 +49,7 @@ public class Account implements Serializable
 	String password;
 	
 	@JsonIgnore
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
-    @JoinColumns(@JoinColumn(name="no", nullable=false, insertable=false))
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+    @JoinColumns({@JoinColumn(name="no", nullable=false, insertable=false)})
     List<AccountRole> roles;
 }
