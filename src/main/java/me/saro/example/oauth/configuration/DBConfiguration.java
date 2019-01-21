@@ -18,7 +18,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 @EnableJpaRepositories(basePackages = "db.oauth.repository", entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
 class DBConfiguration {
-    
+
     @Autowired DataSource dataSource;
 
     @Configuration

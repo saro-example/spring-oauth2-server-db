@@ -26,30 +26,32 @@ import lombok.NoArgsConstructor;
 /**
  * 회원 테이블
  */
-@Entity(name="account")
-@Table(name="account")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Entity(name = "account")
+@Table(name = "account")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @NamedEntityGraph(name = "roles", attributeNodes = @NamedAttributeNode("roles"))
 @SequenceGenerator(name = "account_no_seq", sequenceName = "account_no_seq", allocationSize = 1)
-public class Account implements Serializable
-{
-	private static final long serialVersionUID = 1L;
+public class Account implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@JsonIgnore
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="account_no_seq")
-	@Column(name="no", nullable=false)
-	long no;
+    @Id
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_no_seq")
+    @Column(name = "no", nullable = false)
+    long no;
 
-	@Column(name="account", nullable=false, length=64, unique=true)
-	String account;
-	
-	@JsonIgnore
-	@Column(name="password", nullable=false, length=512)
-	String password;
-	
-	@JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
-    @JoinColumns({@JoinColumn(name="no", nullable=false, insertable=false)})
+    @Column(name = "account", nullable = false, length = 64, unique = true)
+    String account;
+
+    @JsonIgnore
+    @Column(name = "password", nullable = false, length = 512)
+    String password;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumns({ @JoinColumn(name = "no", nullable = false, insertable = false) })
     List<AccountRole> roles;
 }

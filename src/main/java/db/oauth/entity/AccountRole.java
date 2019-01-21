@@ -16,23 +16,27 @@ import lombok.NoArgsConstructor;
 /**
  * 회원 테이블
  */
-@Entity(name="account_role")
-@Table(name="account_role")
+@Entity(name = "account_role")
+@Table(name = "account_role")
 @IdClass(Key.class)
-@Data @AllArgsConstructor @NoArgsConstructor
-public class AccountRole implements Serializable
-{
-	private static final long serialVersionUID = 1L;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AccountRole implements Serializable {
+   
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="no", nullable=false)
-	long no;
+    @Id
+    @Column(name = "no", nullable = false)
+    long no;
 
-	@Id
-	@Column(name="role", nullable=false, length=64, unique=true)
-	String role;
-	
-	@Data @AllArgsConstructor @NoArgsConstructor
+    @Id
+    @Column(name = "role", nullable = false, length = 64, unique = true)
+    String role;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Key implements Serializable {
         private static final long serialVersionUID = 1L;
         long no;

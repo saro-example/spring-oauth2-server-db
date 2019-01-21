@@ -9,30 +9,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import me.saro.commons.Converter;
 import me.saro.commons.converter.HashAlgorithm;
-import me.saro.service.LoginUserDetailsService;
-
+import me.saro.example.oauth.service.LoginUserDetailsService;
 
 @Configuration
-public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter
-{
+public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter {
+    
     @Autowired LoginUserDetailsService loginUserDetailsService;
 
     @Override
-    public void init(AuthenticationManagerBuilder auth) throws Exception
-    {
+    public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginUserDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+
     @Bean
-    PasswordEncoder passwordEncoder()
-    {
+    PasswordEncoder passwordEncoder() {
         return new PasswordEncoder() {
-            
+
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
                 return encodedPassword.equals(encode(rawPassword));
             }
-            
+
             @Override
             public String encode(CharSequence rawPassword) {
                 return Converter.toHashHex(HashAlgorithm.SHA3_512, rawPassword.toString());

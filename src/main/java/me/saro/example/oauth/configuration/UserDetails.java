@@ -14,9 +14,7 @@ public class UserDetails extends User {
     @Getter Account account;
 
     public UserDetails(Account account) {
-        super(
-            account.getAccount(), 
-            account.getPassword(), 
+        super(account.getAccount(),         account.getPassword(), 
             account.getRoles().stream()
                 .map(e -> new SimpleGrantedAuthority(e.getRole())).collect(Collectors.toList())
         );
