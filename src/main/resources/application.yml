@@ -10,3 +10,5 @@ db.oauth:
   minimumIdle: 1
   
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+
+logging.level.org.hibernate: debug
