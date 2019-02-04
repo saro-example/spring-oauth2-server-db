@@ -39,7 +39,7 @@ dependencies {
 	
 	implementation 'org.postgresql:postgresql'
 	
-	implementation 'me.saro:commons:1.9'
+	implementation 'me.saro:commons:2.0'
 	
 	compileOnly 'org.projectlombok:lombok:1.18.2'
 	annotationProcessor 'org.projectlombok:lombok:1.18.4'
