@@ -14,7 +14,6 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String ac) throws UsernameNotFoundException {        
-        return new UserDetails(accountRepository.findByAccount(ac)
-                .orElseThrow(() -> new UsernameNotFoundException("Bad credentials")));
+        return new UserDetails(accountRepository.findByAccount(ac).orElseThrow(() -> new UsernameNotFoundException("Bad credentials")));
     }
 }

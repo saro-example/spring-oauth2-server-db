@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -21,6 +23,7 @@ class DBConfiguration {
 
     @Autowired DataSource dataSource;
 
+    
     @Configuration
     @ConfigurationProperties(prefix = "db.oauth")
     static class HikariDataSourceConfig extends HikariConfig {
@@ -40,5 +43,10 @@ class DBConfiguration {
     @Bean("transactionManager")
     PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactory(builder).getObject());
+    }
+    
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
     }
 }

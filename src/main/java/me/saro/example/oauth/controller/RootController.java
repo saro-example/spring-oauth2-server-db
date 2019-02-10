@@ -10,4 +10,10 @@ public class RootController {
     public String root() {
         return "HELLO";
     }
+    
+    
+    @GetMapping("/user/abc")
+    public String abc() {
+        return "HELLO USER";
+    }
 }
