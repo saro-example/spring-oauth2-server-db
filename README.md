@@ -47,6 +47,21 @@ INSERT INTO public.oauth_client_details
 (client_id, resource_ids, client_secret, "scope", authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
 VALUES('saro', 'res-saro', '7d9d27f1ad2d9ce85850a4e61298f5e5be3f566fc20a7b54d19c1197e7a509094d4992195a5fb86e21bc10cd77223211c2c5c0beede19eb91cdd9d181eb81b9a', 'none', 'password,refresh_token', NULL, 'none', 3600, 3600, NULL, NULL);
 
+create table oauth_access_token (
+  token_id VARCHAR(256),
+  token bytea,
+  authentication_id VARCHAR(256),
+  user_name VARCHAR(256),
+  client_id VARCHAR(256),
+  authentication bytea,
+  refresh_token VARCHAR(256)
+);
+
+create table oauth_refresh_token (
+  token_id VARCHAR(256),
+  token bytea,
+  authentication bytea
+);
 ```
 # STEP 2
 ## set application.yml
